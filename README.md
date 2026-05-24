@@ -21,6 +21,12 @@ Or install dependencies for local OGL path (optional):
 npm install
 ```
 
+## Links
+
+- **Live site:** https://corporate-majdoor-janta-party.vercel.app
+- **GitHub:** https://github.com/vrsn001/corporate-majdoor-janta-party
+- **Vercel project:** https://vercel.com/laksh-rohillas-projects/corporate-majdoor-janta-party
+
 ## Deploy
 
-Hosted on [Vercel](https://vercel.com) under **Corporate Majdoor Janta Party**.
+Hosted on [Vercel](https://vercel.com/laksh-rohillas-projects) as **Corporate Majdoor Janta Party**. Pushes to `master` auto-deploy via GitHub integration.
