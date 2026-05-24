@@ -19,7 +19,7 @@
 /* Ticker */
 .ticker-bar {
   position: sticky;
-  top: 52px;
+  top: 0;
   z-index: 28;
   overflow: hidden;
   border-bottom: 1px solid var(--line);
