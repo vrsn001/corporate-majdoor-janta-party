@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#080907"/>
+  <rect x="40" y="40" width="1120" height="550" fill="none" stroke="#f8f4e8" stroke-width="2" opacity="0.2"/>
+  <text x="600" y="200" text-anchor="middle" fill="#ff3b30" font-family="system-ui,sans-serif" font-size="28" font-weight="700" letter-spacing="0.2em">NATIONAL ALERT</text>
+  <text x="600" y="300" text-anchor="middle" fill="#f8f4e8" font-family="Georgia,serif" font-size="72" font-weight="900">CMJP</text>
+  <text x="600" y="380" text-anchor="middle" fill="#b7ff37" font-family="system-ui,sans-serif" font-size="36">Meleeium: HIGH</text>
+  <text x="600" y="450" text-anchor="middle" fill="#a8aaa0" font-family="system-ui,sans-serif" font-size="24">Built by employees. Funded by burnout.</text>
+  <text x="600" y="540" text-anchor="middle" fill="#2f7dff" font-family="system-ui,sans-serif" font-size="20">corporate-majdoor-janta-party.vercel.app</text>
+</svg>

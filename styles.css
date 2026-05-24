@@ -71,7 +71,7 @@ select {
 /* —— Header —— */
 .topbar {
   position: sticky;
-  top: 0;
+  top: 28px;
   z-index: 30;
   display: grid;
   grid-template-columns: auto 1fr auto;

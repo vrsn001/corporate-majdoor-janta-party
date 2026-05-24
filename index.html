@@ -4,18 +4,31 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>CMJP | Corporate Majdoor Janta Party</title>
+  <meta name="description" content="Corporate Majdoor Janta Party — satirical movement for corporate India. Anti-nonsense, pro-boundaries, pro-human." />
+  <meta property="og:title" content="CMJP | Corporate Majdoor Janta Party" />
+  <meta property="og:description" content="Built by employees. Funded by burnout. Check your Meleeium Index." />
+  <meta property="og:image" content="https://corporate-majdoor-janta-party.vercel.app/assets/og-poster.svg" />
+  <meta property="og:url" content="https://corporate-majdoor-janta-party.vercel.app" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="icon" href="assets/cmjp-seal.svg" type="image/svg+xml" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=IBM+Plex+Mono:wght@400;500;700&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=12" />
-  <link rel="stylesheet" href="Aurora.css?v=12" />
+  <link rel="stylesheet" href="styles.css?v=13" />
+  <link rel="stylesheet" href="Aurora.css?v=13" />
+  <link rel="stylesheet" href="features.css?v=13" />
 </head>
 <body>
   <div class="noise" aria-hidden="true"></div>
+  <div class="scroll-progress-wrap" aria-hidden="true"><div id="scrollProgress" class="scroll-progress" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div></div>
+
+  <div class="ticker-bar" aria-label="Live CMJP alerts">
+    <div id="tickerTrack" class="ticker-track"></div>
+  </div>
 
   <header class="topbar">
     <a class="logo-wrap" href="#top" aria-label="CMJP home">
-      <span class="seal" aria-hidden="true"><span></span></span>
+      <img class="seal-img" src="assets/cmjp-seal.svg" width="36" height="36" alt="" />
       <span class="brand-text">
         <strong>CMJP</strong>
         <span class="eyebrow">Official Satirical Portal</span>
@@ -24,13 +37,14 @@
 
     <nav id="site-nav" aria-label="Primary navigation">
       <a href="#manifesto" data-nav="manifesto">Manifesto</a>
-      <a href="#meleeium" data-nav="meleeium">Meleeium Index</a>
+      <a href="#meleeium" data-nav="meleeium">Meleeium</a>
       <a href="#tools" data-nav="tools">Tools</a>
       <a href="#join" data-nav="join">Join</a>
     </nav>
 
     <div class="header-actions">
-      <span class="status-pill" title="Live emotional telemetry"><span></span>Meleeium High</span>
+      <button type="button" class="btn btn-outline btn-compact" id="themeToggle" aria-label="Toggle HR view">HR View</button>
+      <span class="status-pill" title="Live telemetry"><span></span>Meleeium High</span>
       <a class="btn btn-primary btn-compact" href="#join">Join Movement</a>
     </div>
   </header>
@@ -40,32 +54,29 @@
       <div class="hero-visual" aria-hidden="true">
         <div class="aurora-container" id="aurora"></div>
       </div>
-
       <div class="hero-inner">
         <p class="hero-alert" role="status">
           <span class="alert-pulse" aria-hidden="true"></span>
-          National alert: Meleeium curve rising · 1,284 quick calls reported today
+          National alert: Meleeium curve rising
         </p>
-
         <div class="hero-copy">
           <div class="hero-brand">
-            <span class="seal seal-lg" aria-hidden="true"><span></span></span>
+            <img class="seal-img seal-lg" src="assets/cmjp-seal.svg" width="52" height="52" alt="" />
             <p class="party-name">Corporate Majdoor Janta Party</p>
           </div>
           <h1 id="hero-title">Built by employees. Funded by burnout.</h1>
+          <p class="hero-rotator" id="heroRotator" aria-live="polite"></p>
           <p class="subhead">A satirical movement for corporate India: anti-nonsense, pro-boundaries, pro-human.</p>
-
           <div class="cta-row">
             <a class="btn btn-primary" href="#meleeium">Check Meleeium Index</a>
             <a class="btn btn-outline" href="#manifesto">Read Manifesto</a>
           </div>
-
           <p class="microcopy">By joining, you agree to at least one weekly boundary.</p>
         </div>
       </div>
     </section>
 
-    <section class="emergency-dash" aria-label="CMJP public emergency indicators">
+    <section class="emergency-dash" aria-label="Public emergency indicators">
       <div class="dash-header">
         <p class="mono">Ministry of Emotional Affairs · Live Feed</p>
         <span class="live-badge"><span></span>Broadcasting</span>
@@ -73,13 +84,13 @@
       <div class="dash-grid">
         <article class="stat-tile stat-critical">
           <p class="mono">Indicator 01</p>
-          <h2>Meleeium: High</h2>
+          <h2>Meleeium: <span data-count="82" data-suffix="">0</span></h2>
           <p class="muted">Emotional bandwidth: under review.</p>
-          <div class="meter"><span style="width: 82%"></span></div>
+          <div class="meter"><span data-meter="82" style="width:0%"></span></div>
         </article>
         <article class="stat-tile">
           <p class="mono">Indicator 02</p>
-          <h2>1,284 quick calls</h2>
+          <h2><span data-count="1284" data-suffix="">0</span> quick calls</h2>
           <p class="muted">+14% vs yesterday. Nobody asked for agenda.</p>
         </article>
         <article class="stat-tile stat-notice glitch-box">
@@ -90,48 +101,23 @@
       </div>
     </section>
 
-    <section class="propaganda-line" aria-hidden="true">
-      <p>Corporate India's unofficial opposition party.</p>
-    </section>
+    <section class="propaganda-line"><p>Corporate India's unofficial opposition party.</p></section>
 
     <section class="section manifesto-section" id="manifesto" aria-labelledby="manifesto-title">
-      <div class="section-head manifesto-head">
+      <div class="section-head">
         <p class="tag">The Manifesto</p>
-        <h2 id="manifesto-title">Employee rights, filed as policy.</h2>
+        <h2 id="manifesto-title">Six rights. Zero inspirational posters.</h2>
         <p class="lead">Your burnout has been received by the ministry.</p>
+        <p class="petition-line mono"><span id="petitionCount">47,291</span> employees have emotionally signed</p>
       </div>
-      <div class="policy-grid">
-        <article>
-          <span>01</span>
-          <h3>Right to Context Act</h3>
-          <p>Every task needs owner, deadline, objective, and one sentence explaining why it exists.</p>
-        </article>
-        <article>
-          <span>02</span>
-          <h3>Camera-Off Leave</h3>
-          <p>Two protected days per month. Your face is not required to prove contribution.</p>
-        </article>
-        <article>
-          <span>03</span>
-          <h3>Quarterly Crashout Provision</h3>
-          <p>One protected "I cannot do this today" per quarter. No 19-slide justification.</p>
-        </article>
-        <article>
-          <span>04</span>
-          <h3>After-Hours Escalation Tax</h3>
-          <p>Weekend pings require compensation, context, and apology to your nervous system.</p>
-        </article>
-        <article>
-          <span>05</span>
-          <h3>No-Meeting Lunch Bill</h3>
-          <p>12:30–2:00 PM is a demilitarized zone. Chai diplomacy may continue.</p>
-        </article>
-        <article>
-          <span>06</span>
-          <h3>PPT Revision Limitation Act</h3>
-          <p>After seven revisions, the deck is a spiritual object and must be released.</p>
-        </article>
+      <div class="manifesto-filter" role="tablist">
+        <button type="button" class="active" data-filter="all">All</button>
+        <button type="button" data-filter="boundaries">Boundaries</button>
+        <button type="button" data-filter="meetings">Meetings</button>
+        <button type="button" data-filter="survival">Survival</button>
       </div>
+      <div class="policy-grid" id="policyGrid"></div>
+      <p class="manifesto-banner">This meeting could have been a resignation letter.</p>
     </section>
 
     <section class="section meleeium" id="meleeium" aria-labelledby="meleeium-title">
@@ -140,84 +126,57 @@
         <h2 id="meleeium-title">The Meleeium Index</h2>
         <p class="lead">Emotional residue from 14 standups and zero clarity.</p>
       </div>
-
       <div class="diagnosis-panel">
         <div class="gauge-wrap">
-          <div class="gauge" id="gauge">
-            <span id="gaugeScore">82</span>
-          </div>
-          <p class="mono gauge-note">Meetings · jargon · Sunday dread · unread Slack aura</p>
+          <span class="severity-badge band-4" id="severityBadge">M4</span>
+          <div class="gauge" id="gauge"><span id="gaugeScore">82</span></div>
+          <p class="mono gauge-note">Meetings · jargon · Sunday dread · Slack aura</p>
         </div>
-
         <div class="symptom-board">
-          <label>
-            Quick calls this week
-            <input id="callsRange" type="range" min="0" max="30" value="18" />
-          </label>
-          <label>
-            Weekend pings
-            <input id="pingsRange" type="range" min="0" max="20" value="7" />
-          </label>
-          <label>
-            Times you typed "sure"
-            <input id="sureRange" type="range" min="0" max="50" value="28" />
-          </label>
+          <label>Quick calls this week <input id="callsRange" type="range" min="0" max="30" value="18" /></label>
+          <label>Weekend pings <input id="pingsRange" type="range" min="0" max="20" value="7" /></label>
+          <label>Times you typed "sure" <input id="sureRange" type="range" min="0" max="50" value="28" /></label>
           <div class="diagnosis-output" id="diagnosisOutput">
             <p class="mono">Provisional diagnosis</p>
             <strong id="diagnosisTitle">M4: Acute Corporate Dissociation</strong>
             <span id="diagnosisText">Typing "noted" while spiritually absent.</span>
           </div>
+          <div class="diagnosis-actions">
+            <button type="button" class="btn btn-primary" id="shareDiagnosis">Share score</button>
+            <button type="button" class="btn btn-outline" id="downloadReport">Download report</button>
+          </div>
+          <p class="copy-toast" id="diagnosisToast" hidden>Score copied. Deploy responsibly.</p>
         </div>
       </div>
-
-      <div class="severity-strip" aria-label="Meleeium severity scale">
-        <span>M0 Functional</span>
-        <span>M1 Mild Drift</span>
-        <span>M2 Calendar Anxiety</span>
-        <span>M3 Strategic Numbness</span>
-        <span class="active">M4 Dissociation</span>
-        <span>M5 Founder Slide</span>
+      <div class="severity-strip" aria-label="Severity scale">
+        <span>M0</span><span>M1</span><span>M2</span><span>M3</span><span class="active">M4</span><span>M5</span>
       </div>
+    </section>
+
+    <section class="section" id="quiz" aria-labelledby="quiz-title">
+      <div class="section-head">
+        <p class="tag">Office Species Registry</p>
+        <h2 id="quiz-title">Corporate archetype quiz</h2>
+        <p class="lead">5 questions. One painful truth.</p>
+      </div>
+      <div class="quiz-box" id="quizBox"></div>
     </section>
 
     <section class="section archetypes-section" aria-labelledby="caste-title">
       <div class="section-head">
-        <p class="tag">Office Species Registry</p>
+        <p class="tag">Species ID cards</p>
         <h2 id="caste-title">Corporate Caste System</h2>
-        <p class="lead">This meeting could have been a resignation letter.</p>
+        <p class="lead">Tap a card to reveal survival intel.</p>
       </div>
-      <div class="archetype-scroll">
-        <article>
-          <h3>The LinkedIn Monk</h3>
-          <p>Posts sunrise gratitude after a 9 PM escalation.</p>
-          <strong>"Thrilled to share..."</strong>
-        </article>
-        <article>
-          <h3>The PPT Warrior</h3>
-          <p>Feels a misaligned icon from 40 feet away.</p>
-          <strong>"Can we make this more premium?"</strong>
-        </article>
-        <article>
-          <h3>The HR Diplomat</h3>
-          <p>Converts pain into policy-compliant paragraphs.</p>
-          <strong>"We hear you."</strong>
-        </article>
-        <article>
-          <h3>The Quick Call Criminal</h3>
-          <p>Two minutes becomes 47 minutes and three action items.</p>
-          <strong>"Can we hop on?"</strong>
-        </article>
-        <article>
-          <h3>The Slack Ninja</h3>
-          <p>Documents decisions in threads nobody can locate.</p>
-          <strong>"As mentioned above."</strong>
-        </article>
-        <article>
-          <h3>The Hustlepreneur</h3>
-          <p>Main job, side hustle, podcast, severe eye twitch.</p>
-          <strong>"Sleep is a limiting belief."</strong>
-        </article>
+      <div class="archetype-scroll" id="archetypeScroll"></div>
+    </section>
+
+    <section class="section wall-section" aria-labelledby="wall-title">
+      <div class="section-head">
+        <p class="tag">Public submissions</p>
+        <h2 id="wall-title">Wall of burnout</h2>
       </div>
+      <div class="burnout-wall" id="burnoutWall"></div>
     </section>
 
     <section class="section tools" id="tools" aria-labelledby="tools-title">
@@ -226,116 +185,153 @@
         <h2 id="tools-title">Tools Lab</h2>
         <p class="lead">Practical weapons against institutional nonsense.</p>
       </div>
-
       <div class="tool-lab">
-        <div class="tool-tabs" role="tablist" aria-label="CMJP tools">
+        <div class="tool-tabs" role="tablist">
           <button class="active" data-tool="excuse">Excuse Generator</button>
           <button data-tool="buzzword">Buzzword Translator</button>
-          <button data-tool="pto">PTO Guilt Calculator</button>
-          <button data-tool="bandwidth">Bandwidth Meter</button>
+          <button data-tool="pto">PTO Guilt</button>
+          <button data-tool="bandwidth">Bandwidth</button>
+          <button data-tool="resignation">Resignation Letter</button>
+          <button data-tool="boundary">Boundary Email</button>
         </div>
         <div class="tool-output">
-          <p class="mono" id="toolLabel">Meeting excuse generator</p>
-          <h3 id="toolTitle">"Currently in a cross-functional sync with my nervous system."</h3>
-          <p id="toolCopy">Approved for vague invites, surprise reviews, and calls titled only "Discussion".</p>
+          <p class="mono" id="toolLabel">—</p>
+          <h3 id="toolTitle">—</h3>
+          <p id="toolCopy">—</p>
           <div class="tool-actions">
             <button class="btn btn-primary" id="toolRefresh" type="button">Generate Another</button>
-            <button class="btn btn-outline" id="toolCopyBtn" type="button">Copy to clipboard</button>
+            <button class="btn btn-outline" id="toolCopyBtn" type="button">Copy</button>
           </div>
-          <p class="copy-toast" id="copyToast" hidden>Copied. Deploy at your own risk.</p>
+          <p class="copy-toast" id="copyToast" hidden>Copied.</p>
         </div>
       </div>
+      <div class="chai-widget">
+        <p class="tag">Chai break protocol</p>
+        <p class="chai-display mono" id="chaiDisplay">10:00</p>
+        <div class="chai-actions">
+          <button type="button" class="btn btn-primary" id="chaiStart">Start 10-min break</button>
+          <button type="button" class="btn btn-outline" id="chaiCopy">Copy DND status</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="section violation-section" aria-labelledby="violation-title">
+      <div class="section-head">
+        <p class="tag">Whistleblower desk</p>
+        <h2 id="violation-title">Report a violation</h2>
+        <p class="lead">Fake form. Real feelings.</p>
+      </div>
+      <form id="violationForm" class="violation-form">
+        <label>Violation type
+          <select name="type" required>
+            <option value="">Select</option>
+            <option>Friday 6 PM sync</option>
+            <option>Meeting without agenda</option>
+            <option>Weekend escalation</option>
+            <option>Mandatory fun</option>
+          </select>
+        </label>
+        <label>Details <textarea name="details" rows="3" placeholder="Describe the corporate war crime"></textarea></label>
+        <button class="btn btn-primary" type="submit">File with ministry</button>
+      </form>
+      <div id="violationResult" class="violation-result" hidden></div>
     </section>
 
     <section class="section join" id="join" aria-labelledby="join-title">
       <div class="join-layout">
         <div class="section-head">
-          <p class="tag">Membership Form</p>
+          <p class="tag">Membership</p>
           <h2 id="join-title">Apply for emotional citizenship.</h2>
           <p class="lead">Ceremonial form. Real pain. Satirical party.</p>
         </div>
-
         <form id="memberForm">
-          <label>
-            Alias or first name
-            <input name="name" type="text" placeholder="Example: Deck Survivor" required>
-          </label>
-          <label>
-            What caused your Meleeium?
+          <label>Alias or first name <input name="name" type="text" placeholder="Deck Survivor" required></label>
+          <label>What caused your Meleeium?
             <select name="cause" required>
-              <option value="">Select one</option>
+              <option value="">Select</option>
               <option>Quick calls without agenda</option>
               <option>Quarterly review poetry</option>
-              <option>Weekend escalation culture</option>
-              <option>LinkedIn motivation overdose</option>
+              <option>Weekend escalation</option>
+              <option>LinkedIn overdose</option>
             </select>
           </label>
-          <label>
-            Preferred coping mechanism
+          <label>Coping mechanism
             <select name="coping" required>
-              <option value="">Select one</option>
+              <option value="">Select</option>
               <option>Chai</option>
               <option>Doomscrolling</option>
               <option>Fake optimism</option>
-              <option>Silent scream in washroom</option>
+              <option>Washroom scream</option>
             </select>
           </label>
-          <label class="check-row">
-            <input type="checkbox" required>
-            <span>I pledge to respect at least one weekly boundary.</span>
-          </label>
+          <label class="check-row"><input type="checkbox" required><span>I pledge one weekly boundary.</span></label>
           <button class="btn btn-primary" type="submit">Submit Membership</button>
         </form>
       </div>
-
+      <div class="wallet-card" id="walletCard" hidden>
+        <img id="walletQr" width="120" height="120" alt="QR to CMJP portal" />
+        <div>
+          <p class="mono">CMJP Cadre ID</p>
+          <p class="wallet-name" id="walletName">—</p>
+          <p class="muted">Meleeium: <span id="walletScore">—</span></p>
+        </div>
+      </div>
       <div class="certificate" id="certificate" hidden>
-        <div class="cert-seal" aria-hidden="true"><span></span></div>
+        <img class="seal-img" src="assets/cmjp-seal.svg" width="56" height="56" alt="" />
         <p class="mono">Republic of Corporate India</p>
         <h3>Meleeium Resilience Certificate</h3>
         <p class="cert-name" id="certName">—</p>
-        <p class="muted">Provisional CMJP cadre · emotionally valid 90 days</p>
-        <button class="btn btn-outline" type="button" id="certCopy">Copy certificate text</button>
+        <p class="muted">Provisional cadre · 90 days emotional validity</p>
+        <div class="cert-actions">
+          <button class="btn btn-outline" type="button" id="certCopy">Copy text</button>
+          <button class="btn btn-primary" type="button" id="certDownload">Download PNG</button>
+        </div>
       </div>
     </section>
 
-    <section class="poster-cta" aria-label="Final call to action">
+    <section class="poster-cta" aria-label="Final CTA">
       <p class="poster-line">No agenda. No attendance.</p>
       <p class="poster-line poster-accent">Camera-off is a fundamental right.</p>
       <a class="btn btn-primary btn-lg" href="#join">Join the Movement</a>
     </section>
 
     <section class="section faq" aria-labelledby="faq-title">
-      <div class="section-head">
-        <p class="tag">FAQ</p>
-        <h2 id="faq-title">Clarifications from the secretariat.</h2>
-      </div>
+      <div class="section-head"><p class="tag">FAQ</p><h2 id="faq-title">Secretariat clarifications</h2></div>
       <div class="faq-list">
         <button aria-expanded="false">Is CMJP a real political party?</button>
-        <div class="answer">No. Satire wearing a government badge and holding an employee ID.</div>
+        <div class="answer">No. Satire with a government badge and employee ID.</div>
         <button aria-expanded="false">Is this anti-work?</button>
-        <div class="answer">No. Anti-chaos, anti-fake urgency, anti-meeting-without-purpose.</div>
+        <div class="answer">No. Anti-chaos, anti-fake urgency, anti-purposeless meetings.</div>
         <button aria-expanded="false">Can HR join?</button>
-        <div class="answer">Yes, but they must arrive without a wellness webinar.</div>
+        <div class="answer">Yes, without a wellness webinar.</div>
         <button aria-expanded="false">What is Meleeium?</button>
-        <div class="answer">Fictional condition from KPIs, ambiguity, and inspirational all-hands.</div>
+        <div class="answer">Fictional residue from KPIs, ambiguity, and all-hands.</div>
       </div>
     </section>
   </main>
 
   <footer class="site-footer">
-    <div class="footer-seal" aria-hidden="true"><span></span></div>
+    <img class="seal-img" src="assets/cmjp-seal.svg" width="48" height="48" alt="" />
     <div class="footer-main">
       <strong>CMJP Digital Secretariat</strong>
       <p class="footer-tagline">This meeting could have been a resignation letter.</p>
       <div class="footer-links">
         <a href="#manifesto">Manifesto</a>
-        <a href="#meleeium">Meleeium Index</a>
+        <a href="#meleeium">Meleeium</a>
+        <a href="#tools">Tools</a>
         <a href="#join">Join</a>
       </div>
-      <p class="footer-legal mono">Terms of Emotional Use · No warranty on boundaries enforced</p>
+      <p class="footer-legal mono">Terms of Emotional Use · No warranty on boundaries</p>
     </div>
   </footer>
 
-  <script type="module" src="bundle.js?v=12"></script>
+  <nav class="bottom-nav" aria-label="Mobile navigation">
+    <a href="#manifesto"><span>📜</span>Manifesto</a>
+    <a href="#meleeium"><span>📊</span>Index</a>
+    <a href="#tools"><span>🔧</span>Tools</a>
+    <a href="#join"><span>✊</span>Join</a>
+  </nav>
+
+  <script type="module" src="bundle.js?v=13"></script>
 </body>
 </html>
