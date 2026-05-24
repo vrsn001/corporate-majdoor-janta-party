@@ -100,8 +100,8 @@ export function initManifesto() {
 
   const render = (filter = "all") => {
     const items = filter === "all" ? MANIFESTO_POLICIES : MANIFESTO_POLICIES.filter((p) => p.cat === filter);
-    grid.innerHTML = items.map((p) => `
-      <article class="policy-card" data-cat="${p.cat}" tabindex="0">
+    grid.innerHTML = items.map((p, index) => `
+      <article class="policy-card" data-cat="${p.cat}" tabindex="0" style="animation-delay: ${index * 45}ms">
         <div class="policy-top">
           <span class="policy-num">${p.id}</span>
           <span class="policy-stamp">${p.status}</span>
@@ -111,14 +111,27 @@ export function initManifesto() {
         <p class="policy-body">${p.body}</p>
         <details class="policy-details">
           <summary>Legal text / Human translation</summary>
-          <p class="legal"><strong>Legal:</strong> ${p.legal}</p>
-          <p class="human"><strong>Human:</strong> ${p.human}</p>
+          <div class="details-content">
+            <p class="legal"><strong>Legal:</strong> ${p.legal}</p>
+            <p class="human"><strong>Human:</strong> ${p.human}</p>
+          </div>
         </details>
       </article>
     `).join("");
 
     grid.querySelectorAll(".policy-card").forEach((card) => {
-      card.addEventListener("click", () => card.classList.toggle("stamped"));
+      card.addEventListener("click", (e) => {
+        if (e.target.closest(".policy-details")) {
+          return;
+        }
+        card.classList.toggle("stamped");
+      });
+    });
+
+    grid.querySelectorAll(".policy-details").forEach((details) => {
+      details.addEventListener("click", (e) => {
+        e.stopPropagation();
+      });
     });
   };
 
@@ -164,7 +177,7 @@ export function initWall() {
   wall.innerHTML = WALL_ENTRIES.map((t) => `<blockquote>${t}</blockquote>`).join("");
 }
 
-export function initQuiz() {
+export function initQuiz(copyText) {
   const box = document.querySelector("#quizBox");
   if (!box) return;
   let step = 0;
@@ -178,8 +191,40 @@ export function initQuiz() {
         <p class="mono">Registry result</p>
         <h3>${r.title}</h3>
         <p>${r.line}</p>
-        <button type="button" class="btn btn-outline" id="quizRetry">Retake quiz</button>
+        <div style="display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 1.25rem;">
+          <button type="button" class="btn btn-outline" id="quizRetry">Retake quiz</button>
+          <button type="button" class="btn btn-linkedin" id="quizShareLinkedIn">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style="margin-right: 0.35rem;"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+            Share on LinkedIn
+          </button>
+        </div>
+        <p class="copy-toast" id="quizToast" hidden style="margin-top: 0.75rem;">Template copied! Redirecting to LinkedIn...</p>
       `;
+
+      document.querySelector("#quizShareLinkedIn")?.addEventListener("click", async () => {
+        const text = `🚨 I just took the CMJP Corporate Archetype Quiz and got:
+🏆 ${r.title.toUpperCase()}
+"${r.line}"
+
+Find your archetype and claim your Meleeium Resilience Certificate:
+👉 https://corporate-majdoor-janta-party.vercel.app
+
+✊ Republic of Corporate India · CMJP Satirical Secretariat
+#CorporateMajdoor #CMJP #WorkCulture #Burnout`;
+
+        const ok = await copyText(text);
+        const toast = document.querySelector("#quizToast");
+        if (ok && toast) {
+          toast.hidden = false;
+          setTimeout(() => {
+            toast.hidden = true;
+            window.open("https://www.linkedin.com/feed/", "_blank");
+          }, 1800);
+        } else {
+          window.open("https://www.linkedin.com/feed/", "_blank");
+        }
+      });
+
       document.querySelector("#quizRetry")?.addEventListener("click", () => {
         step = 0;
         Object.keys(scores).forEach((k) => { scores[k] = 0; });
@@ -258,6 +303,8 @@ export function initTools(copyText) {
   const toolCopyBtn = document.querySelector("#toolCopyBtn");
   const copyToast = document.querySelector("#copyToast");
 
+  const toolShareLinkedIn = document.querySelector("#toolShareLinkedIn");
+
   const render = () => {
     const tool = TOOL_DATA[activeTool];
     const item = tool.items[toolIndex % tool.items.length];
@@ -278,8 +325,33 @@ export function initTools(copyText) {
   toolCopyBtn?.addEventListener("click", async () => {
     const ok = await copyText(`${toolTitle.textContent}\n\n${toolCopy.textContent}`);
     if (ok && copyToast) {
+      copyToast.textContent = "Copied.";
       copyToast.hidden = false;
       setTimeout(() => { copyToast.hidden = true; }, 2200);
+    }
+  });
+  toolShareLinkedIn?.addEventListener("click", async () => {
+    const text = `🔥 CMJP Tools Lab - ${toolLabel.textContent}:
+👉 ${toolTitle.textContent}
+(${toolCopy.textContent})
+
+Equip yourself with satirical workplace survival weapons:
+👉 https://corporate-majdoor-janta-party.vercel.app
+
+✊ Republic of Corporate India · CMJP Satirical Secretariat
+#CorporateMajdoor #CMJP #WorkCulture #Burnout`;
+
+    const ok = await copyText(text);
+    if (ok && copyToast) {
+      copyToast.textContent = "Template copied! Redirecting to LinkedIn...";
+      copyToast.hidden = false;
+      setTimeout(() => {
+        copyToast.hidden = true;
+        copyToast.textContent = "Copied.";
+        window.open("https://www.linkedin.com/feed/", "_blank");
+      }, 1800);
+    } else {
+      window.open("https://www.linkedin.com/feed/", "_blank");
     }
   });
   render();
@@ -340,8 +412,38 @@ export function initDiagnosis(copyText) {
     const s = update();
     const text = `CMJP Meleeium Index: ${s.score}/99 — ${s.title}\n${s.text}\nhttps://corporate-majdoor-janta-party.vercel.app`;
     await copyText(text);
-    document.querySelector("#diagnosisToast").hidden = false;
-    setTimeout(() => { document.querySelector("#diagnosisToast").hidden = true; }, 2500);
+    const toast = document.querySelector("#diagnosisToast");
+    if (toast) {
+      toast.textContent = "Score copied. Deploy responsibly.";
+      toast.hidden = false;
+      setTimeout(() => { toast.hidden = true; }, 2500);
+    }
+  });
+
+  document.querySelector("#shareDiagnosisLinkedIn")?.addEventListener("click", async () => {
+    const s = update();
+    const text = `📊 My CMJP Meleeium Index is ${s.score}/99 — ${s.title.toUpperCase()}
+"${s.text}"
+
+Check your own emotional bandwidth & download your Meleeium Resilience Certificate:
+👉 https://corporate-majdoor-janta-party.vercel.app
+
+✊ Republic of Corporate India · CMJP Satirical Secretariat
+#CorporateMajdoor #CMJP #WorkCulture #Burnout`;
+
+    const ok = await copyText(text);
+    const toast = document.querySelector("#diagnosisToast");
+    if (ok && toast) {
+      toast.textContent = "LinkedIn template copied! Redirecting...";
+      toast.hidden = false;
+      setTimeout(() => {
+        toast.hidden = true;
+        toast.textContent = "Score copied. Deploy responsibly.";
+        window.open("https://www.linkedin.com/feed/", "_blank");
+      }, 1800);
+    } else {
+      window.open("https://www.linkedin.com/feed/", "_blank");
+    }
   });
 
   document.querySelector("#downloadReport")?.addEventListener("click", () => {
@@ -363,31 +465,71 @@ export function drawCertificate(name, score) {
   canvas.width = 800;
   canvas.height = 560;
   const ctx = canvas.getContext("2d");
+  
+  // Background
   ctx.fillStyle = "#080907";
   ctx.fillRect(0, 0, 800, 560);
+  
+  // Outer Border
   ctx.strokeStyle = "#f8f4e8";
-  ctx.lineWidth = 2;
+  ctx.lineWidth = 1;
   ctx.strokeRect(40, 40, 720, 480);
+  
+  // Inner Border (Double Concentric Border effect)
+  ctx.strokeStyle = "rgba(248, 244, 232, 0.35)";
+  ctx.lineWidth = 1;
+  ctx.strokeRect(46, 46, 708, 468);
+  
+  // Top header text
   ctx.fillStyle = "#f8f4e8";
-  ctx.font = "bold 28px Georgia, serif";
+  ctx.font = "bold 24px Georgia, serif";
   ctx.textAlign = "center";
-  ctx.fillText("REPUBLIC OF CORPORATE INDIA", 400, 100);
-  ctx.font = "bold 42px Georgia, serif";
+  ctx.fillText("REPUBLIC OF CORPORATE INDIA", 400, 105);
+  
+  // Title: MELEEIUM RESILIENCE CERTIFICATE (fitted safely inside bounds to avoid [ELEEIUM clipping!)
+  ctx.font = "bold 26px Georgia, serif";
   ctx.fillText("MELEEIUM RESILIENCE CERTIFICATE", 400, 160);
+  
+  // Name (with auto font shrink loop to avoid overflow)
+  let fontSize = 36;
+  ctx.font = `bold ${fontSize}px system-ui, sans-serif`;
+  let textWidth = ctx.measureText(String(name)).width;
+  while (textWidth > 640 && fontSize > 16) {
+    fontSize -= 2;
+    ctx.font = `bold ${fontSize}px system-ui, sans-serif`;
+    textWidth = ctx.measureText(String(name)).width;
+  }
   ctx.fillStyle = "#b7ff37";
-  ctx.font = "bold 36px system-ui, sans-serif";
   ctx.fillText(String(name), 400, 260);
+  
+  // Subtitle / Score Details
   ctx.fillStyle = "#a8aaa0";
   ctx.font = "18px system-ui, sans-serif";
   ctx.fillText(`Meleeium score: ${score}/99 · Provisional CMJP cadre`, 400, 320);
   ctx.fillText("Emotionally valid 90 days", 400, 360);
+  
+  // Ministerial Red Seal (circular detailed seal)
+  const sealY = 445;
   ctx.strokeStyle = "#ff3b30";
+  ctx.lineWidth = 2;
   ctx.beginPath();
-  ctx.arc(400, 440, 40, 0, Math.PI * 2);
+  ctx.arc(400, sealY, 34, 0, Math.PI * 2);
   ctx.stroke();
+  
+  ctx.strokeStyle = "rgba(255, 59, 48, 0.4)";
+  ctx.lineWidth = 1;
+  ctx.setLineDash([4, 3]);
+  ctx.beginPath();
+  ctx.arc(400, sealY, 28, 0, Math.PI * 2);
+  ctx.stroke();
+  ctx.setLineDash([]); // Reset line dash
+  
   ctx.fillStyle = "#ff3b30";
-  ctx.font = "bold 14px system-ui";
-  ctx.fillText("CMJP", 400, 445);
+  ctx.font = "bold 13px system-ui, sans-serif";
+  ctx.fillText("CMJP", 400, sealY + 2);
+  ctx.font = "bold 7px system-ui, sans-serif";
+  ctx.fillText("OFFICIAL SEAL", 400, sealY + 14);
+  
   return canvas;
 }
 
@@ -493,4 +635,63 @@ export function initReveals() {
     });
   }, { threshold: 0.1 });
   document.querySelectorAll(".reveal").forEach((el) => obs.observe(el));
+}
+
+export function initEmergencyTelemetry() {
+  const statCritical = document.querySelector(".stat-tile.stat-critical");
+  if (!statCritical) return;
+
+  const meleeiumEl = statCritical.querySelector("h2 span[data-count]");
+  const callsEl = document.querySelectorAll(".stat-tile h2")[1]?.querySelector("span[data-count]");
+  const meterEl = statCritical.querySelector(".meter span");
+
+  if (!meleeiumEl || !callsEl || !meterEl) return;
+
+  let currentMeleeium = 82;
+  let currentCalls = 1284;
+
+  setInterval(() => {
+    // 1. Fluctuate Meleeium by +/- 1 point (bound between 81 and 84)
+    const mChange = Math.floor(Math.random() * 3) - 1; // -1, 0, +1
+    currentMeleeium = Math.max(81, Math.min(84, currentMeleeium + mChange));
+    meleeiumEl.textContent = currentMeleeium;
+    meterEl.style.width = `${currentMeleeium}%`;
+
+    // 2. Increment calls by a random amount (+1 to +3)
+    const cChange = Math.floor(Math.random() * 3) + 1; // +1, +2, +3
+    currentCalls += cChange;
+    callsEl.textContent = currentCalls.toLocaleString();
+
+    // Subtle neon-green glowing flash on increment
+    callsEl.style.transition = "color 0.2s ease, text-shadow 0.2s ease";
+    callsEl.style.color = "var(--toxic)";
+    callsEl.style.textShadow = "0 0 10px var(--toxic)";
+    setTimeout(() => {
+      callsEl.style.color = "";
+      callsEl.style.textShadow = "";
+    }, 300);
+  }, 4500);
+}
+
+export function initRogueGlitch() {
+  const tileNotice = document.querySelector(".stat-tile.stat-notice");
+  if (!tileNotice) return;
+
+  tileNotice.addEventListener("click", () => {
+    const overlay = document.createElement("div");
+    overlay.className = "rogue-glitch-overlay";
+    overlay.innerHTML = `
+      <div class="rogue-glitch-content">
+        <p class="mono" style="color: var(--toxic); font-weight: bold; font-size: 1.1rem; margin: 0 0 0.5rem; letter-spacing: 0.08em; text-transform: uppercase;">ALERT: EMERGENCY DECREE 27-A ACTIVE</p>
+        <h1 class="rogue-glitch-title">NO AGENDA.<br>NO ATTENDANCE.</h1>
+        <p class="mono" style="color: var(--warn); font-weight: bold; font-size: 0.95rem; margin: 0.5rem 0 0; letter-spacing: 0.08em; text-transform: uppercase;">SIGNAL OVERRIDDEN BY CMJP SECRETARIAT</p>
+      </div>
+    `;
+    document.body.appendChild(overlay);
+
+    setTimeout(() => {
+      overlay.classList.add("fade-out");
+      setTimeout(() => overlay.remove(), 250);
+    }, 750);
+  });
 }

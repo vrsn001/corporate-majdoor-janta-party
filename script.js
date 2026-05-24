@@ -16,7 +16,9 @@ import {
   initMembership,
   initInteractiveFooter,
   initBottomNav,
-  initReveals
+  initReveals,
+  initEmergencyTelemetry,
+  initRogueGlitch
 } from "./features.js";
 
 async function copyText(text) {
@@ -104,7 +106,7 @@ initCounters();
 initManifesto();
 initArchetypes();
 initWall();
-initQuiz();
+initQuiz(copyText);
 initViolationForm();
 initChaiTimer();
 initTools(copyText);
@@ -112,4 +114,6 @@ const getDiagnosisState = initDiagnosis(copyText);
 initMembership(copyText, getDiagnosisState);
 initInteractiveFooter();
 initBottomNav();
+initEmergencyTelemetry();
+initRogueGlitch();
 initReveals();

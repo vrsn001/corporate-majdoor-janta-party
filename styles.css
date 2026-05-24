@@ -32,7 +32,7 @@ body {
   min-height: 100vh;
   color: var(--text);
   background:
-    radial-gradient(480px circle at var(--mx) var(--my), rgba(47, 125, 255, 0.08), transparent 42%),
+    radial-gradient(circle 480px at var(--mx) var(--my), rgba(47, 125, 255, 0.08), transparent 42%),
     radial-gradient(circle at 82% 8%, rgba(255, 59, 48, 0.1), transparent 28rem),
     linear-gradient(160deg, #080907 0%, #0e100c 55%, #060706 100%);
   font-family: "Space Grotesk", sans-serif;
@@ -403,6 +403,22 @@ h1 {
   font-size: 0.95rem;
 }
 
+.btn-linkedin {
+  border-color: rgba(0, 119, 181, 0.4);
+  background: #0077b5;
+  color: #ffffff;
+  box-shadow: 0 8px 24px rgba(0, 119, 181, 0.2);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.btn-linkedin:hover {
+  background: #006297;
+  border-color: #006297;
+  color: #ffffff;
+}
+
 /* —— Emergency dashboard —— */
 .emergency-dash {
   width: min(1180px, calc(100% - 2rem));
@@ -507,11 +523,21 @@ h1 {
   overflow: hidden;
 }
 
+@keyframes gradient-wave {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
 .meter span {
   display: block;
   height: 100%;
   border-radius: inherit;
-  background: linear-gradient(90deg, var(--corp), var(--warn));
+  background: linear-gradient(90deg, var(--corp), var(--warn), var(--toxic), var(--corp));
+  background-size: 300% 100%;
+  animation: gradient-wave 6s ease infinite;
+  box-shadow: 0 0 10px rgba(255, 59, 48, 0.45);
+  transition: width 0.8s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .glitch-box.glitch::after {
