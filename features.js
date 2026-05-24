@@ -441,6 +441,47 @@ export function initBottomNav() {
   });
 }
 
+export function initInteractiveFooter() {
+  const btn = document.querySelector("#ventButton");
+  const counter = document.querySelector("#ventCounter");
+  const consoleEl = document.querySelector("#ventConsole");
+  if (!btn || !counter || !consoleEl) return;
+
+  const responses = [
+    "Ministry of Burnout: Complaint successfully moved to a beautiful folder called 'Trash'.",
+    "Secretariat Telemetry: Stress levels noted. Increasing Sunday Dread forecast by 2.4%.",
+    "AI Empathy Engine: 'We hear you and appreciate your synergy-alignment.' Marking as resolved.",
+    "HR Auto-Response: 'Have you tried attending our next Mandatory Wellness Webinar?'",
+    "Stakeholder circular: Let us take this offline. (Never speak of it again.)",
+    "Urgent Ping: Your boundary has been flagged as 'not team-player compliant'.",
+    "Digital Secretariat: Provisional relief granted. Deploying 0.1mg of digital chai.",
+    "HR Chatbot: Please complete a 2x2 slide expressing your spiritual exhaustion.",
+    "Notification: Congratulations! You have unlocked a fresh, unprompted calendar invite.",
+    "Empathy Telemetry: Provisional diagnosis confirmed. spirit_level: 0%."
+  ];
+
+  let currentVented = parseFloat(localStorage.getItem("cmjp-stress-vented") || "0");
+  counter.textContent = currentVented.toFixed(1);
+
+  btn.addEventListener("click", () => {
+    btn.classList.add("shaking");
+    setTimeout(() => btn.classList.remove("shaking"), 400);
+
+    const increment = 0.5 + Math.random() * 0.5;
+    currentVented += increment;
+    localStorage.setItem("cmjp-stress-vented", currentVented.toFixed(1));
+    counter.textContent = currentVented.toFixed(1);
+
+    const randomResponse = responses[Math.floor(Math.random() * responses.length)];
+    
+    // Typewriter effect in console
+    consoleEl.innerHTML = `<span class="mono console-prompt success">&gt; Venting...</span>`;
+    setTimeout(() => {
+      consoleEl.innerHTML = `<span class="mono console-prompt hr-reply">&gt; ${randomResponse}</span>`;
+    }, 450);
+  });
+}
+
 export function initReveals() {
   document.querySelectorAll(".section, .stat-tile, .policy-card, .flip-card, .wall-section blockquote").forEach((el) => el.classList.add("reveal"));
   const obs = new IntersectionObserver((entries) => {

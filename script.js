@@ -14,6 +14,7 @@ import {
   initTools,
   initDiagnosis,
   initMembership,
+  initInteractiveFooter,
   initBottomNav,
   initReveals
 } from "./features.js";
@@ -109,5 +110,6 @@ initChaiTimer();
 initTools(copyText);
 const getDiagnosisState = initDiagnosis(copyText);
 initMembership(copyText, getDiagnosisState);
+initInteractiveFooter();
 initBottomNav();
 initReveals();

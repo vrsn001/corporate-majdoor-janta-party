@@ -311,17 +311,62 @@
   </main>
 
   <footer class="site-footer">
-    <img class="seal-img" src="assets/cmjp-seal.svg" width="48" height="48" alt="" />
-    <div class="footer-main">
-      <strong>CMJP Digital Secretariat</strong>
-      <p class="footer-tagline">This meeting could have been a resignation letter.</p>
-      <div class="footer-links">
-        <a href="#manifesto">Manifesto</a>
-        <a href="#meleeium">Meleeium</a>
-        <a href="#tools">Tools</a>
-        <a href="#join">Join</a>
+    <div class="footer-grid">
+      <!-- Column 1: Brand & Telemetry -->
+      <div class="footer-col footer-col-brand">
+        <div class="footer-brand-wrap">
+          <img class="seal-img footer-seal-img" src="assets/cmjp-seal.svg" width="48" height="48" alt="CMJP Logo" />
+          <div>
+            <strong>CMJP Digital Secretariat</strong>
+            <p class="footer-tagline">This meeting could have been a resignation letter.</p>
+          </div>
+        </div>
+        <div class="telemetry-box">
+          <p class="mono telemetry-title">Ministry Telemetry</p>
+          <div class="telemetry-row">
+            <span class="pulse-indicator status-orange"></span>
+            <span class="mono">Spiritual Bandwidth: CRITICAL</span>
+          </div>
+          <div class="telemetry-row">
+            <span class="pulse-indicator status-green"></span>
+            <span class="mono">Stress Vent System: ACTIVE</span>
+          </div>
+          <div class="telemetry-row">
+            <span class="pulse-indicator status-red"></span>
+            <span class="mono">Sunday Dread Index: 98.4%</span>
+          </div>
+        </div>
       </div>
-      <p class="footer-legal mono">Terms of Emotional Use · No warranty on boundaries</p>
+
+      <!-- Column 2: Shortcuts -->
+      <div class="footer-col footer-col-links">
+        <p class="mono col-header">Ministry Shortcuts</p>
+        <div class="footer-vertical-links">
+          <a href="#manifesto">📜 The Manifesto</a>
+          <a href="#meleeium">📊 Meleeium Index</a>
+          <a href="#tools">🔧 Tools Lab</a>
+          <a href="#join">✊ Join Movement</a>
+          <a href="#violationForm">🚨 Report Violation</a>
+        </div>
+      </div>
+
+      <!-- Column 3: Stress Vent Widget -->
+      <div class="footer-col footer-col-widget">
+        <div class="stress-card">
+          <p class="mono card-header">Emergency Stress Vent</p>
+          <p class="card-desc">Reduces Sunday dread by 0.5% per vent. Simulated stress relief only.</p>
+          <div class="vent-action-row">
+            <button type="button" class="btn btn-primary btn-vent" id="ventButton">🔥 Vent Stress</button>
+            <span class="mono vent-stats">Vented: <strong id="ventCounter" class="text-toxic">0</strong> tons</span>
+          </div>
+          <div class="vent-console" id="ventConsole">
+            <span class="mono console-prompt">&gt; Ready for emotional download...</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-legal mono">Terms of Emotional Use · No warranty on boundaries · CMJP Satirical Secretariat © 2026</p>
     </div>
   </footer>
 
