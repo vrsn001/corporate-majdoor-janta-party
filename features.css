@@ -188,6 +188,7 @@
   border: 1px solid transparent;
   transition: border-color 200ms ease, background-color 200ms ease;
   width: 100%;
+  grid-column: 1 / -1; /* Span both columns so it doesn't squeeze column 2! */
 }
 
 .policy-details[open] {
