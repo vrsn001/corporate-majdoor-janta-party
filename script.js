@@ -3,8 +3,8 @@ import { mountAurora } from "./aurora.js";
 try {
   mountAurora(document.querySelector("#aurora"), {
     colorStops: ["#b7ff37", "#2f7dff", "#ff3b30"],
-    blend: 0.38,
-    amplitude: 0.85,
+    blend: 0.42,
+    amplitude: 0.9,
     speed: 0.5
   });
   document.documentElement.classList.add("aurora-ready");

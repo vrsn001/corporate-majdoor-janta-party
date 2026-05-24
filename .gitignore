@@ -1,7 +1,10 @@
 node_modules/
+bundle.js
 .vercel/
 .DS_Store
 Thumbs.db
 *.log
 .env
 .env.*
+
+.vercel

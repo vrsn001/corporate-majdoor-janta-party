@@ -9,16 +9,18 @@ Satirical movement portal for corporate India — anti-nonsense, pro-boundaries,
 
 ## Local development
 
-Open `index.html` with a local server (ES modules require HTTP):
-
-```bash
-npx serve .
-```
-
-Or install dependencies for local OGL path (optional):
+The Aurora effect uses [React Bits](https://reactbits.dev) logic with `ogl`, bundled via esbuild:
 
 ```bash
 npm install
+npm run build
+npx serve .
+```
+
+For live rebuilds while editing:
+
+```bash
+npm run dev
 ```
 
 ## Links
