@@ -64,10 +64,65 @@ export const WALL_ENTRIES = [
 ];
 
 export const TOOL_DATA = {
-  excuse: { label: "Meeting excuse generator", items: [["\"Currently in a cross-functional sync with my nervous system.\"", "Approved for vague invites and calls titled only \"Discussion\"."], ["\"Resolving a high-priority bandwidth incident.\"", "Use when your brain has too many tabs open."], ["\"Need urgent context recovery.\"", "Deploy when nobody knows the project anymore."]] },
-  buzzword: { label: "Buzzword translator", items: [["\"High visibility\" = high risk, low credit.", "Public success, private panic."], ["\"Take this offline\" = fight with better lighting.", "Corporate diplomacy zone."], ["\"Ownership mindset\" = scope up, pay flat.", "Classic fiscal magic."]] },
-  pto: { label: "PTO guilt calculator", items: [["Guilt Index: 82/100.", "Apply anyway. Avoid Slack 36 hours."], ["Guilt Index: 46/100.", "Manager tone survivable."], ["Guilt Index: 97/100.", "Fake network instability recommended."]] },
-  bandwidth: { label: "Emotional bandwidth meter", items: [["Status: Can only react.", "Avoid humans saying \"quick\"."], ["Status: Do not perceive me.", "Camera-off is medical."], ["Status: Able to collaborate.", "Rare. Use responsibly."]] },
-  resignation: { label: "Resignation letter generator", items: [["Dear Leadership, I resign from ambiguity.", "Effective immediately, or after I find my mouse in open tabs."], ["I am leaving to pursue my health and boundaries.", "This meeting could have been an email. It wasn't."]] },
-  boundary: { label: "Boundary email generator", items: [["I will not be available after 7 PM without 24h notice.", "Urgent means compensated or scheduled."], ["I need an agenda before I accept this invite.", "Otherwise I will protect focus time."]] }
+  excuse: {
+    label: "Meeting excuse generator",
+    items: [
+      ["\"Currently in a cross-functional sync with my nervous system.\"", "Approved for vague invites and calls titled only 'Discussion'."],
+      ["\"My keyboard is undergoing emergency alignment therapy.\"", "Deploy when you cannot look at another spreadsheet today."],
+      ["\"Resolving a high-priority spiritual bandwidth incident.\"", "Perfect for when your brain has too many tabs open."],
+      ["\"Need urgent context recovery to remember what my job is.\"", "Use when nobody knows who owns the project anymore."],
+      ["\"Stuck in a parallel universe where this meeting has an agenda.\"", "Ideal for decline replies to surprise Friday 5:30 PM calendar blocks."]
+    ]
+  },
+  buzzword: {
+    label: "Buzzword translator",
+    items: [
+      ["\"High visibility\" means high risk, low credit.", "Public success, private panic."],
+      ["\"Take this offline\" means let us fight with better lighting.", "Let's take this behind the digital shed and bury it forever."],
+      ["\"Ownership mindset\" means scope up, pay flat.", "Classic fiscal magic where you are the magician and the volunteer."],
+      ["\"Leverage synergies\" means double the meetings, half the progress.", "Combining two mediocre processes to form one giant bottleneck."],
+      ["\"Circle back\" means let us hope we all forget this next week.", "The polite corporate way to postpone an idea to the afterlife."],
+      ["\"A lot on my plate\" means stop talking to me.", "I am currently one email away from throwing my laptop into a lake."]
+    ]
+  },
+  pto: {
+    label: "PTO guilt calculator",
+    items: [
+      ["Guilt Index: 82 out of 100.", "Apply anyway. Avoid Slack for at least 36 hours."],
+      ["Guilt Index: 46 out of 100.", "Manager's reply tone is survivable. Proceed to pack bags."],
+      ["Guilt Index: 99 out of 100.", "Fake network instability or a plumbing emergency recommended."],
+      ["Guilt Index: 110 out of 100.", "You are currently feeling bad for wanting to eat lunch. Close the tab immediately."],
+      ["Guilt Index: 5 out of 100.", "Spiritual freedom achieved. You no longer care if the database explodes."]
+    ]
+  },
+  bandwidth: {
+    label: "Emotional bandwidth meter",
+    items: [
+      ["Status: Can only react with emoji reactions.", "Avoid humans saying 'quick call'."],
+      ["Status: Do not perceive me.", "Camera-off is a medical necessity at this stage."],
+      ["Status: Able to collaborate at 1% capacity.", "I will nod, but I am spiritually in the mountains."],
+      ["Status: Mentally checked out since last Tuesday.", "Answering Slack pings with 'noted' while staring into the abyss."],
+      ["Status: High bandwidth for chai breaks only.", "Will participate in tea diplomacy. Do not ask for slides."]
+    ]
+  },
+  resignation: {
+    label: "Resignation letter generator",
+    items: [
+      ["Dear Leadership, I resign from ambiguity.", "Effective immediately, or after I find my mouse in my 52 open browser tabs."],
+      ["I am leaving to pursue my health and actual boundaries.", "This meeting could have been an email. It was not, so I am leaving."],
+      ["Please accept this resignation as my final quarterly deliverable.", "My synergy is fully aligned with my departure."],
+      ["I am taking myself offline permanently.", "Best of luck circling back on my tasks."],
+      ["Trading my stakeholder ownership for early afternoon naps.", "No transition document will survive this QBR."]
+    ]
+  },
+  boundary: {
+    label: "Boundary email generator",
+    items: [
+      ["I will not be available after 7 PM without written chai compensation.", "Urgent means pre-compensated or scheduled."],
+      ["I need a written agenda before I click accept.", "Otherwise I will protect my focus time with my life."],
+      ["My Slack status is active but my spirit is not.", "Please email me only if the building is physically on fire."],
+      ["Let's not take this offline. Let's not take it online either.", "Let's never speak of this idea again."],
+      ["I am unavailable for calls that could have been a single Slack message.", "Please type it out. You can do it."]
+    ]
+  }
 };
