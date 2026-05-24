@@ -1,0 +1,10 @@
+{
+  "name": "corporate-majdoor-janta-party",
+  "version": "1.0.0",
+  "description": "Corporate Majdoor Janta Party — official satirical portal",
+  "private": true,
+  "license": "MIT",
+  "dependencies": {
+    "ogl": "^1.0.11"
+  }
+}
